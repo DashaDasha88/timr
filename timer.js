@@ -7,7 +7,7 @@ class Timer{
     if (callbacks) {
       this.onStart = callbacks.onStart;
       this.onTick = callbacks.onTick;
-      this.onPause = callbacks.onPause;
+      this.onComplete = callbacks.onComplete;
     }
 
     this.startButton.addEventListener('click', this.start);
@@ -16,7 +16,7 @@ class Timer{
 
   start = () => {
     if (this.onStart){
-      this.onStart();
+      this.onStart(this.timeRemaining);
     }
 
     this.tick();
@@ -36,7 +36,7 @@ class Timer{
     } else {
       this.timeRemaining = this.timeRemaining - .05;
       if (this.onTick){
-        this
+        this.onTick(this.timeRemaining)
       }
     }
 
